@@ -9,8 +9,15 @@ FDTD_SimulateFile <- function(fileName, doPlot = 1)
     # Select and read transmission line file
     source(fileName)
 
-    
-    
+    failPreCheck <- 0
+    if(!exists("lineLength")) {
+        failPreCheck <- 1
+        print("Missing line length for tranmission line ( in meters).  Define lineLength.")
+    }
+    if(failPreCheck) {
+        stop("Transmission line is missing parameters")
+    }
+
     # Define Simulation Parameters
     K  <- lineLength * resolution + 1   #   Number of grid points.
     dz <- lineLength / (K - 1)          #   Grid spacing (m)
@@ -89,7 +96,7 @@ FDTD_SimulateFile <- function(fileName, doPlot = 1)
         cat("Whoah something blew up!\n\n")
         stop()
     }
-    
+
     #  Initialize Voltage and Current Arrays
     V <- array(0, dim = c(1, K)) # zeros(1,K)
     I <- array(0, dim = c(1, K))
