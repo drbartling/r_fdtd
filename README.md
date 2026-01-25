@@ -16,9 +16,11 @@ Change the directory to this directory:
   Then browse to the folder with this readme and the `fdtd.R` file.
 
 Enter one of the following commands in the command line.
+```r
 source("simulate_t_line.R")
 source("compare_t_lines.R")
 source("test_example_lines.R")
+```
 
 #### simulate_t_line
 
